@@ -258,15 +258,14 @@ namespace AutoBlight
     /// During active blight, BLOCK cutting non-blighted plants (trees, stumps).
     /// Only blighted plants can be cut. This forces pawns to deal with blight first.
     /// </summary>
-    [HarmonyPatch(typeof(WorkGiver_PlantsCut), nameof(WorkGiver_PlantsCut.HasJobOnThing))]
+    [HarmonyPatch(typeof(WorkGiver_PlantsCut), nameof(WorkGiver_PlantsCut.JobOnThing))]
     public static class Patch_BlockNonBlightCut
     {
-        public static void Postfix(WorkGiver_PlantsCut __instance, Pawn pawn, Thing t,
-            ref bool __result)
+        public static void Postfix(Pawn pawn, Thing t, ref Job __result)
         {
             try
             {
-                if (!__result) return; // Already no job, skip
+                if (__result == null) return;
                 if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
                 if (pawn?.Map == null) return;
 
@@ -277,7 +276,7 @@ namespace AutoBlight
                 Plant plant = t as Plant;
                 if (plant == null || !plant.Blighted)
                 {
-                    __result = false; // No job on non-blighted plants during blight
+                    __result = null;
                 }
             }
             catch (Exception) { }
@@ -287,22 +286,22 @@ namespace AutoBlight
     /// <summary>
     /// During active blight, also block harvesting. All plant work should focus on blight.
     /// </summary>
-    [HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.HasJobOnThing))]
+    [HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.JobOnCell))]
     public static class Patch_BlockHarvestDuringBlight
     {
-        public static void Postfix(Pawn pawn, Thing t, ref bool __result)
+        public static void Postfix(Pawn pawn, ref Job __result)
         {
             try
             {
-                if (!__result) return;
+                if (__result == null) return;
                 if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
                 if (pawn?.Map == null) return;
 
                 var comp = pawn.Map.GetComponent<MapComponent_AutoBlight>();
                 if (comp == null || !comp.blightActive) return;
 
-                // Block ALL harvesting while blight is active -- focus on cutting blight
-                __result = false;
+                // Block ALL harvesting while blight is active
+                __result = null;
             }
             catch (Exception) { }
         }
