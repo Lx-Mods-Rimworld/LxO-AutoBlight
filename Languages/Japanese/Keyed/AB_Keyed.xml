@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>疫病の自動刈り取りを有効にする</AB_Enabled>
+  <AB_Enabled_Desc>疫病に感染した植物を自動的に刈り取り指定します。</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>ホームゾーンのみ</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>ホームゾーン内の疫病植物のみを自動的に刈り取ります。</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>疫病検出時に通知を表示する</AB_ShowNotification>
+  <AB_BlightDetected>疫病自動刈り取り：{0} 本の疫病植物を刈り取り指定しました。</AB_BlightDetected>
+</LanguageData>

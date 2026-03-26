@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>LxO - Auto Cut Blight</name>
+  <author>Lexxers</author>
+  <url>https://github.com/Lx-Mods-Rimworld/LxO-AutoBlight</url>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <packageId>Lexxers.AutoBlight</packageId>
+  <description>Automatically designates blighted plants for cutting the moment blight strikes. No more losing entire fields because you didn't notice in time.
+
+Configurable: toggle on/off, set notification preference, choose whether to auto-cut only in home zone or everywhere.
+
+Zero dependencies beyond Harmony. Lightweight. Just works.</description>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>ludeon.rimworld</li>
+  </loadAfter>
+</ModMetaData>

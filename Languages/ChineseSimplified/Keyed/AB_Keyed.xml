@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>启用自动砍除枯萎病</AB_Enabled>
+  <AB_Enabled_Desc>自动将感染枯萎病的植物标记为砍除。</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>仅限家园区域</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>仅自动砍除家园区域内的枯萎病植物。</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>检测到枯萎病时显示通知</AB_ShowNotification>
+  <AB_BlightDetected>自动砍除枯萎病：已标记 {0} 株枯萎植物等待砍除。</AB_BlightDetected>
+</LanguageData>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>역병 자동 제거 활성화</AB_Enabled>
+  <AB_Enabled_Desc>역병에 감염된 식물을 자동으로 제거 지정합니다.</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>홈 구역만</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>홈 구역 내의 역병 식물만 자동으로 제거합니다.</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>역병 감지 시 알림 표시</AB_ShowNotification>
+  <AB_BlightDetected>역병 자동 제거: {0}개의 역병 식물이 제거 지정되었습니다.</AB_BlightDetected>
+</LanguageData>

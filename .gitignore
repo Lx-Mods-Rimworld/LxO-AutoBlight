@@ -1,0 +1,10 @@
+Assemblies/*.dll
+Assemblies/*.pdb
+Assemblies/*.xml
+.vs/
+*.user
+*.suo
+bin/
+obj/
+Thumbs.db
+.DS_Store

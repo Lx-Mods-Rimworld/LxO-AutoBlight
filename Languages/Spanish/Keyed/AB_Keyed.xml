@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>Activar corte automático de plaga</AB_Enabled>
+  <AB_Enabled_Desc>Designar automáticamente las plantas infectadas para cortar.</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>Solo en la zona hogar</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>Solo cortar automáticamente las plantas infectadas dentro de la zona hogar.</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>Mostrar notificación cuando se detecte plaga</AB_ShowNotification>
+  <AB_BlightDetected>Corte automático de plaga: {0} plantas infectadas designadas para cortar.</AB_BlightDetected>
+</LanguageData>

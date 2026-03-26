@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>Enable Auto Cut Blight</AB_Enabled>
+  <AB_Enabled_Desc>Automatically designate blighted plants for cutting.</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>Home zone only</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>Only auto-cut blighted plants within your home zone.</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>Show notification when blight is detected</AB_ShowNotification>
+  <AB_BlightDetected>Auto Cut Blight: {0} blighted plants designated for cutting.</AB_BlightDetected>
+</LanguageData>

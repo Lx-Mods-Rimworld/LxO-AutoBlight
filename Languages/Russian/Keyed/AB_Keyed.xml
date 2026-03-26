@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>Включить автоматическое срезание заражённых растений</AB_Enabled>
+  <AB_Enabled_Desc>Автоматически назначать заражённые растения на срезание.</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>Только в домашней зоне</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>Автоматически срезать заражённые растения только в домашней зоне.</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>Показывать уведомление при обнаружении заражения</AB_ShowNotification>
+  <AB_BlightDetected>Авто-срезание: {0} заражённых растений назначено на срезание.</AB_BlightDetected>
+</LanguageData>

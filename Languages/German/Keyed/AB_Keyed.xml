@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <AB_Enabled>Automatisches Fäule-Schneiden aktivieren</AB_Enabled>
+  <AB_Enabled_Desc>Befallene Pflanzen automatisch zum Schneiden markieren.</AB_Enabled_Desc>
+  <AB_HomeZoneOnly>Nur in der Heimatzone</AB_HomeZoneOnly>
+  <AB_HomeZoneOnly_Desc>Nur befallene Pflanzen innerhalb der Heimatzone automatisch schneiden.</AB_HomeZoneOnly_Desc>
+  <AB_ShowNotification>Benachrichtigung anzeigen, wenn Fäule erkannt wird</AB_ShowNotification>
+  <AB_BlightDetected>Automatisches Fäule-Schneiden: {0} befallene Pflanzen zum Schneiden markiert.</AB_BlightDetected>
+</LanguageData>
