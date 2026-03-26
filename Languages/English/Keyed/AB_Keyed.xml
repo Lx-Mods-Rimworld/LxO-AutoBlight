@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>Home zone only</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>Only auto-cut blighted plants within your home zone.</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>Show notification when blight is detected</AB_ShowNotification>
+  <AB_BoostPriority>Boost PlantCutting priority during blight</AB_BoostPriority>
+  <AB_BoostPriority_Desc>Temporarily set PlantCutting to priority 1 for all colonists when blight is active. Restores to normal when blight is cleared.</AB_BoostPriority_Desc>
+  <AB_BlockSowing>Block sowing in blighted areas</AB_BlockSowing>
+  <AB_BlockSowing_Desc>Prevent colonists from planting new crops in areas with active blight. Blight would just spread to them.</AB_BlockSowing_Desc>
   <AB_BlightDetected>Auto Cut Blight: {0} blighted plants designated for cutting.</AB_BlightDetected>
 </LanguageData>
