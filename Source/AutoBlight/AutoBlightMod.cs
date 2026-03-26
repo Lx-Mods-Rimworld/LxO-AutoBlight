@@ -87,8 +87,9 @@ namespace AutoBlight
         // Track growing zones that had blight (to block replanting)
         private HashSet<int> blightedZoneCells = new HashSet<int>();
 
-        // Saved original plant cut priorities per pawn (to restore later)
+        // Priority tracking
         private bool prioritiesBoosted;
+        private bool weEnabledManualPriorities; // Did we turn on manual priorities?
 
         public MapComponent_AutoBlight(Map map) : base(map) { }
 
@@ -189,6 +190,14 @@ namespace AutoBlight
         /// </summary>
         private void BoostCutPlantPriority()
         {
+            // Enable manual priorities if they're off -- required for priority 1 to work
+            if (Current.Game?.playSettings != null && !Current.Game.playSettings.useWorkPriorities)
+            {
+                Current.Game.playSettings.useWorkPriorities = true;
+                weEnabledManualPriorities = true;
+                Log.Message("[AutoBlight] Temporarily enabled manual work priorities for blight response.");
+            }
+
             WorkTypeDef cutPlants = DefDatabase<WorkTypeDef>.GetNamedSilentFail("PlantCutting");
             if (cutPlants == null) return;
 
@@ -231,6 +240,15 @@ namespace AutoBlight
                 }
             }
             prioritiesBoosted = false;
+
+            // Restore manual priorities if we enabled them
+            if (weEnabledManualPriorities && Current.Game?.playSettings != null)
+            {
+                Current.Game.playSettings.useWorkPriorities = false;
+                weEnabledManualPriorities = false;
+                Log.Message("[AutoBlight] Restored manual work priorities to OFF.");
+            }
+
             Log.Message("[AutoBlight] Blight cleared. PlantCutting priority restored to normal.");
         }
 
@@ -249,6 +267,7 @@ namespace AutoBlight
             Scribe_Collections.Look(ref alreadyDesignated, "ab_designated", LookMode.Value);
             Scribe_Values.Look(ref blightActive, "ab_blightActive", false);
             Scribe_Values.Look(ref prioritiesBoosted, "ab_prioritiesBoosted", false);
+            Scribe_Values.Look(ref weEnabledManualPriorities, "ab_weEnabledManual", false);
             if (alreadyDesignated == null) alreadyDesignated = new HashSet<int>();
             if (blightedZoneCells == null) blightedZoneCells = new HashSet<int>();
         }
