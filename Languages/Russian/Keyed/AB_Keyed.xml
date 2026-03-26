@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>Только в домашней зоне</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>Автоматически срезать заражённые растения только в домашней зоне.</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>Показывать уведомление при обнаружении заражения</AB_ShowNotification>
+  <AB_BoostPriority>Повысить приоритет срезания при заражении</AB_BoostPriority>
+  <AB_BoostPriority_Desc>Временно устанавливает приоритет срезания растений на 1 для всех колонистов при активном заражении. Восстанавливается после устранения заражения.</AB_BoostPriority_Desc>
+  <AB_BlockSowing>Запретить посев в заражённых зонах</AB_BlockSowing>
+  <AB_BlockSowing_Desc>Запрещает колонистам сажать новые культуры в зонах с активным заражением. Заражение просто распространится на них.</AB_BlockSowing_Desc>
   <AB_BlightDetected>Авто-срезание: {0} заражённых растений назначено на срезание.</AB_BlightDetected>
 </LanguageData>

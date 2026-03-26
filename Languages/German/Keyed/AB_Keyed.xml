@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>Nur in der Heimatzone</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>Nur befallene Pflanzen innerhalb der Heimatzone automatisch schneiden.</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>Benachrichtigung anzeigen, wenn Fäule erkannt wird</AB_ShowNotification>
+  <AB_BoostPriority>Pflanzenschnitt-Priorität bei Fäule erhöhen</AB_BoostPriority>
+  <AB_BoostPriority_Desc>Setzt Pflanzenschnitt vorübergehend auf Priorität 1 für alle Kolonisten, wenn Fäule aktiv ist. Wird nach Beseitigung der Fäule wiederhergestellt.</AB_BoostPriority_Desc>
+  <AB_BlockSowing>Aussaat in befallenen Gebieten blockieren</AB_BlockSowing>
+  <AB_BlockSowing_Desc>Verhindert, dass Kolonisten in Gebieten mit aktiver Fäule neue Pflanzen säen. Die Fäule würde sich nur auf sie ausbreiten.</AB_BlockSowing_Desc>
   <AB_BlightDetected>Automatisches Fäule-Schneiden: {0} befallene Pflanzen zum Schneiden markiert.</AB_BlightDetected>
 </LanguageData>

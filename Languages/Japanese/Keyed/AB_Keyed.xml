@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>ホームゾーンのみ</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>ホームゾーン内の疫病植物のみを自動的に刈り取ります。</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>疫病検出時に通知を表示する</AB_ShowNotification>
+  <AB_BoostPriority>疫病発生時に植物刈り取りの優先度を上げる</AB_BoostPriority>
+  <AB_BoostPriority_Desc>疫病が発生している間、全入植者の植物刈り取り優先度を一時的に1に設定します。疫病が除去されると元に戻ります。</AB_BoostPriority_Desc>
+  <AB_BlockSowing>疫病エリアでの種まきを禁止する</AB_BlockSowing>
+  <AB_BlockSowing_Desc>疫病が発生しているエリアで入植者が新しい作物を植えるのを防ぎます。疫病が新しい作物にも広がってしまいます。</AB_BlockSowing_Desc>
   <AB_BlightDetected>疫病自動刈り取り：{0} 本の疫病植物を刈り取り指定しました。</AB_BlightDetected>
 </LanguageData>

@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>仅限家园区域</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>仅自动砍除家园区域内的枯萎病植物。</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>检测到枯萎病时显示通知</AB_ShowNotification>
+  <AB_BoostPriority>枯萎病期间提升砍伐优先级</AB_BoostPriority>
+  <AB_BoostPriority_Desc>当枯萎病活跃时，临时将所有殖民者的植物砍伐优先级设为1。枯萎病清除后恢复正常。</AB_BoostPriority_Desc>
+  <AB_BlockSowing>禁止在枯萎区域播种</AB_BlockSowing>
+  <AB_BlockSowing_Desc>阻止殖民者在有枯萎病的区域种植新作物。枯萎病会蔓延到新作物上。</AB_BlockSowing_Desc>
   <AB_BlightDetected>自动砍除枯萎病：已标记 {0} 株枯萎植物等待砍除。</AB_BlightDetected>
 </LanguageData>

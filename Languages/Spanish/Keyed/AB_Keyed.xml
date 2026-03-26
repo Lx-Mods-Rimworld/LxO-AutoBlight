@@ -5,5 +5,9 @@
   <AB_HomeZoneOnly>Solo en la zona hogar</AB_HomeZoneOnly>
   <AB_HomeZoneOnly_Desc>Solo cortar automáticamente las plantas infectadas dentro de la zona hogar.</AB_HomeZoneOnly_Desc>
   <AB_ShowNotification>Mostrar notificación cuando se detecte plaga</AB_ShowNotification>
+  <AB_BoostPriority>Aumentar prioridad de corte durante la plaga</AB_BoostPriority>
+  <AB_BoostPriority_Desc>Establece temporalmente la prioridad de corte de plantas en 1 para todos los colonos cuando hay plaga activa. Se restaura cuando la plaga se elimina.</AB_BoostPriority_Desc>
+  <AB_BlockSowing>Bloquear siembra en áreas infectadas</AB_BlockSowing>
+  <AB_BlockSowing_Desc>Impide que los colonos planten nuevos cultivos en áreas con plaga activa. La plaga simplemente se propagaría a ellos.</AB_BlockSowing_Desc>
   <AB_BlightDetected>Corte automático de plaga: {0} plantas infectadas designadas para cortar.</AB_BlightDetected>
 </LanguageData>
