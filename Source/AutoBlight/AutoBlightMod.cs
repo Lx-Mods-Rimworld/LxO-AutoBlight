@@ -255,42 +255,54 @@ namespace AutoBlight
     }
 
     /// <summary>
-    /// During active blight, prioritize blighted plants over trees/stumps.
-    /// Patches WorkGiver_PlantsCut to sort blighted plants to the front.
+    /// During active blight, BLOCK cutting non-blighted plants (trees, stumps).
+    /// Only blighted plants can be cut. This forces pawns to deal with blight first.
     /// </summary>
-    [HarmonyPatch(typeof(WorkGiver_PlantsCut), nameof(WorkGiver_PlantsCut.PotentialWorkThingsGlobal))]
-    public static class Patch_PrioritizeBlightCut
+    [HarmonyPatch(typeof(WorkGiver_PlantsCut), nameof(WorkGiver_PlantsCut.HasJobOnThing))]
+    public static class Patch_BlockNonBlightCut
     {
-        public static void Postfix(WorkGiver_PlantsCut __instance, Pawn pawn,
-            ref IEnumerable<Thing> __result)
+        public static void Postfix(WorkGiver_PlantsCut __instance, Pawn pawn, Thing t,
+            ref bool __result)
         {
             try
             {
+                if (!__result) return; // Already no job, skip
                 if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
-                if (pawn?.Map == null || __result == null) return;
+                if (pawn?.Map == null) return;
 
                 var comp = pawn.Map.GetComponent<MapComponent_AutoBlight>();
                 if (comp == null || !comp.blightActive) return;
 
-                // Sort: blighted plants first, then everything else
-                var items = new List<Thing>(__result);
-                items.Sort((a, b) =>
+                // If this plant is NOT blighted, block the job
+                Plant plant = t as Plant;
+                if (plant == null || !plant.Blighted)
                 {
-                    bool aBlighted = (a is Plant pa) && pa.Blighted;
-                    bool bBlighted = (b is Plant pb) && pb.Blighted;
+                    __result = false; // No job on non-blighted plants during blight
+                }
+            }
+            catch (Exception) { }
+        }
+    }
 
-                    if (aBlighted && !bBlighted) return -1;
-                    if (!aBlighted && bBlighted) return 1;
+    /// <summary>
+    /// During active blight, also block harvesting. All plant work should focus on blight.
+    /// </summary>
+    [HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.HasJobOnThing))]
+    public static class Patch_BlockHarvestDuringBlight
+    {
+        public static void Postfix(Pawn pawn, Thing t, ref bool __result)
+        {
+            try
+            {
+                if (!__result) return;
+                if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
+                if (pawn?.Map == null) return;
 
-                    // Among blighted plants, prefer closer ones
-                    if (aBlighted && bBlighted)
-                        return a.Position.DistanceTo(pawn.Position)
-                            .CompareTo(b.Position.DistanceTo(pawn.Position));
+                var comp = pawn.Map.GetComponent<MapComponent_AutoBlight>();
+                if (comp == null || !comp.blightActive) return;
 
-                    return 0;
-                });
-
-                __result = items;
+                // Block ALL harvesting while blight is active -- focus on cutting blight
+                __result = false;
             }
             catch (Exception) { }
         }
