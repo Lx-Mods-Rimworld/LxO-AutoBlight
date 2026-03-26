@@ -255,6 +255,48 @@ namespace AutoBlight
     }
 
     /// <summary>
+    /// During active blight, prioritize blighted plants over trees/stumps.
+    /// Patches WorkGiver_PlantsCut to sort blighted plants to the front.
+    /// </summary>
+    [HarmonyPatch(typeof(WorkGiver_PlantsCut), nameof(WorkGiver_PlantsCut.PotentialWorkThingsGlobal))]
+    public static class Patch_PrioritizeBlightCut
+    {
+        public static void Postfix(WorkGiver_PlantsCut __instance, Pawn pawn,
+            ref IEnumerable<Thing> __result)
+        {
+            try
+            {
+                if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
+                if (pawn?.Map == null || __result == null) return;
+
+                var comp = pawn.Map.GetComponent<MapComponent_AutoBlight>();
+                if (comp == null || !comp.blightActive) return;
+
+                // Sort: blighted plants first, then everything else
+                var items = new List<Thing>(__result);
+                items.Sort((a, b) =>
+                {
+                    bool aBlighted = (a is Plant pa) && pa.Blighted;
+                    bool bBlighted = (b is Plant pb) && pb.Blighted;
+
+                    if (aBlighted && !bBlighted) return -1;
+                    if (!aBlighted && bBlighted) return 1;
+
+                    // Among blighted plants, prefer closer ones
+                    if (aBlighted && bBlighted)
+                        return a.Position.DistanceTo(pawn.Position)
+                            .CompareTo(b.Position.DistanceTo(pawn.Position));
+
+                    return 0;
+                });
+
+                __result = items;
+            }
+            catch (Exception) { }
+        }
+    }
+
+    /// <summary>
     /// Block sowing in blighted zones during active blight.
     /// Prevents pawns from planting new crops where blight will just spread to them.
     /// </summary>
