@@ -90,6 +90,7 @@ namespace AutoBlight
         // Priority tracking
         private bool prioritiesBoosted;
         private bool weEnabledManualPriorities; // Did we turn on manual priorities?
+        private Dictionary<int, int> originalPriorities = new Dictionary<int, int>(); // pawnID -> old priority
 
         public MapComponent_AutoBlight(Map map) : base(map) { }
 
@@ -201,6 +202,7 @@ namespace AutoBlight
             WorkTypeDef cutPlants = DefDatabase<WorkTypeDef>.GetNamedSilentFail("PlantCutting");
             if (cutPlants == null) return;
 
+            originalPriorities.Clear();
             foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
             {
                 if (pawn.Dead || pawn.Downed) continue;
@@ -208,9 +210,10 @@ namespace AutoBlight
                 if (pawn.WorkTypeIsDisabled(cutPlants)) continue;
 
                 int current = pawn.workSettings.GetPriority(cutPlants);
-                // Only boost if not already high priority and not disabled (0)
-                if (current > 1 || current == 0)
+                // Only boost if assigned (priority > 1) — respect player's intent to disable (0)
+                if (current > 1)
                 {
+                    originalPriorities[pawn.thingIDNumber] = current;
                     pawn.workSettings.SetPriority(cutPlants, 1);
                 }
             }
@@ -233,12 +236,17 @@ namespace AutoBlight
                 if (pawn.WorkTypeIsDisabled(cutPlants)) continue;
 
                 int current = pawn.workSettings.GetPriority(cutPlants);
-                // Only lower if we boosted it (it's at 1)
+                // Only restore if we boosted it (it's at 1)
                 if (current == 1)
                 {
-                    pawn.workSettings.SetPriority(cutPlants, 3);
+                    int original;
+                    if (originalPriorities.TryGetValue(pawn.thingIDNumber, out original))
+                        pawn.workSettings.SetPriority(cutPlants, original);
+                    else
+                        pawn.workSettings.SetPriority(cutPlants, 3); // Fallback
                 }
             }
+            originalPriorities.Clear();
             prioritiesBoosted = false;
 
             // Restore manual priorities if we enabled them
@@ -313,7 +321,7 @@ namespace AutoBlight
             try
             {
                 if (__result == null) return;
-                if (!AutoBlightSettings.enabled || !AutoBlightSettings.boostPriority) return;
+                if (!AutoBlightSettings.enabled || !AutoBlightSettings.blockSowing) return;
                 if (pawn?.Map == null) return;
 
                 var comp = pawn.Map.GetComponent<MapComponent_AutoBlight>();
